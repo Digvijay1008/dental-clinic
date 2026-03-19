@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-headline: "Manrope", sans-serif;
+
+  --color-primary: #006b62;
+  --color-primary-dim: #005e56;
+  --color-primary-container: #89f5e7;
+  --color-on-primary: #e2fff9;
+  --color-on-primary-container: #005c54;
+
+  --color-secondary: #506076;
+  --color-secondary-container: #d3e4fe;
+  --color-on-secondary-container: #435368;
+
+  --color-tertiary: #006e2f;
+  --color-tertiary-container: #6bff8f;
+  --color-on-tertiary-container: #005f28;
+
+  --color-error: #a83836;
+  --color-error-container: #fa746f;
+
+  --color-surface: #f7f9fb;
+  --color-surface-container: #eaeff2;
+  --color-surface-container-low: #f0f4f7;
+  --color-surface-container-lowest: #ffffff;
+  --color-on-surface: #2c3437;
+  --color-on-surface-variant: #596064;
+  --color-outline: #747c80;
+  --color-outline-variant: #acb3b7;
+}
+
+@layer base {
+  body {
+    @apply bg-surface text-on-surface font-sans;
+  }
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  vertical-align: middle;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #e2e8f0;
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #cbd5e1;
+}
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #e2e8f0 transparent;
+}
