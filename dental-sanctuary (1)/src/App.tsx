@@ -170,92 +170,325 @@ const NotificationPanel = ({ isOpen, onClose, notifications, markAsRead }: { isO
 // --- Pages ---
 
 const LandingPage = ({ onLoginClick }: { onLoginClick: () => void }) => (
-  <div className="min-h-screen bg-[#e0f2f1] font-sans overflow-hidden">
-    <nav className="flex items-center justify-between px-12 py-6 bg-white/50 backdrop-blur-md sticky top-0 z-50">
+  <div className="min-h-screen bg-[#f0f9f9] font-sans overflow-x-hidden">
+    {/* Navigation */}
+    <nav className="flex items-center justify-between px-6 md:px-12 py-6 bg-white/70 backdrop-blur-xl sticky top-0 z-[100] border-b border-teal-50">
       <div className="flex items-center gap-3">
-        <div className="w-10 h-10 bg-[#008080] rounded-xl flex items-center justify-center text-white">
+        <div className="w-10 h-10 bg-[#008080] rounded-xl flex items-center justify-center text-white shadow-lg shadow-teal-900/20">
           <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>dentistry</span>
         </div>
-        <h1 className="text-2xl font-bold text-[#008080]">Dental Sanctuary</h1>
+        <h1 className="text-2xl font-black text-[#008080] tracking-tight">Dental Sanctuary</h1>
       </div>
-      <div className="flex items-center gap-8 font-semibold text-slate-600">
-        <a href="#" className="hover:text-[#008080] transition-colors">About</a>
-        <a href="#" className="hover:text-[#008080] transition-colors">Treatments</a>
-        <a href="#" className="hover:text-[#008080] transition-colors">Doctors</a>
+      <div className="hidden md:flex items-center gap-10 font-bold text-slate-600">
+        <a href="#features" className="hover:text-[#008080] transition-colors">Features</a>
+        <a href="#solutions" className="hover:text-[#008080] transition-colors">Solutions</a>
+        <a href="#testimonials" className="hover:text-[#008080] transition-colors">Success Stories</a>
         <button 
           onClick={onLoginClick}
-          className="bg-[#008080] text-white px-8 py-2.5 rounded-full shadow-lg shadow-teal-900/20 hover:scale-105 active:scale-95 transition-all"
+          className="bg-[#008080] text-white px-8 py-2.5 rounded-full shadow-xl shadow-teal-900/20 hover:scale-105 active:scale-95 transition-all"
         >
           Portal Login
         </button>
       </div>
+      <button className="md:hidden p-2 text-slate-600">
+        <span className="material-symbols-outlined">menu</span>
+      </button>
     </nav>
 
-    <main className="max-w-7xl mx-auto px-12 pt-20 pb-32 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+    {/* Hero Section */}
+    <section className="relative max-w-7xl mx-auto px-6 md:px-12 pt-20 pb-32 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
       <motion.div 
         initial={{ opacity: 0, x: -50 }}
-        animate={{ opacity: 1, x: 0 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
         transition={{ duration: 0.8 }}
+        className="relative z-10"
       >
-        <span className="bg-teal-100 text-[#008080] px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-6 inline-block">
+        <div className="inline-flex items-center gap-2 bg-teal-100/50 border border-teal-200 text-[#008080] px-4 py-2 rounded-full text-xs font-black uppercase tracking-widest mb-8">
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-teal-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-teal-500"></span>
+          </span>
           Next-Gen Clinic Management
-        </span>
-        <h2 className="text-7xl font-bold text-slate-900 leading-[1.1] mb-8">
+        </div>
+        <h2 className="text-6xl md:text-8xl font-black text-slate-900 leading-[0.95] mb-8 tracking-tighter">
           Dental <br />
           <span className="text-[#008080]">Automation</span> <br />
           Platform
         </h2>
-        <p className="text-xl text-slate-600 leading-relaxed mb-10 max-w-md">
-          Transform your dental business with centralized lead management, smart clinic assignment, and automated patient communication.
+        <p className="text-xl text-slate-600 leading-relaxed mb-12 max-w-lg font-medium">
+          The all-in-one OS for modern dental groups. Centralize leads, automate patient flows, and scale your practice with AI-driven insights.
         </p>
-        <div className="flex gap-4">
-          <button className="bg-[#008080] text-white px-10 py-4 rounded-2xl font-bold text-lg shadow-xl shadow-teal-900/30 hover:shadow-2xl transition-all">
+        <div className="flex flex-col sm:flex-row gap-5">
+          <button 
+            onClick={onLoginClick}
+            className="bg-[#008080] text-white px-12 py-5 rounded-[2rem] font-black text-xl shadow-2xl shadow-teal-900/30 hover:shadow-teal-900/40 hover:-translate-y-1 transition-all flex items-center justify-center gap-3"
+          >
             Get Started Free
+            <span className="material-symbols-outlined">arrow_forward</span>
           </button>
-          <button className="bg-white text-slate-900 px-10 py-4 rounded-2xl font-bold text-lg border border-slate-200 hover:bg-slate-50 transition-all">
+          <button className="bg-white text-slate-900 px-12 py-5 rounded-[2rem] font-black text-xl border-2 border-slate-100 hover:bg-slate-50 hover:border-slate-200 transition-all shadow-lg shadow-slate-200/50">
             Watch Demo
           </button>
+        </div>
+        
+        <div className="mt-16 flex items-center gap-6">
+          <div className="flex -space-x-4">
+            {[1,2,3,4].map(i => (
+              <img key={i} src={`https://i.pravatar.cc/100?u=${i}`} className="w-12 h-12 rounded-full border-4 border-white shadow-lg" alt="User" />
+            ))}
+          </div>
+          <p className="text-sm font-bold text-slate-500">
+            <span className="text-slate-900">500+</span> Clinics trust us daily
+          </p>
         </div>
       </motion.div>
 
       <motion.div 
         initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
         transition={{ duration: 1, delay: 0.2 }}
         className="relative"
       >
-        <div className="bg-white p-4 rounded-[2rem] shadow-2xl rotate-3 relative z-10">
+        <div className="relative z-10 bg-white p-4 rounded-[3rem] shadow-[0_32px_64px_-12px_rgba(0,128,128,0.2)] border border-teal-50">
           <img 
-            src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=2070" 
+            src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=2070" 
             alt="Dashboard Preview" 
-            className="rounded-[1.5rem] w-full h-auto"
+            className="rounded-[2.5rem] w-full h-auto shadow-inner"
           />
-        </div>
-        <div className="absolute -top-10 -right-10 bg-teal-500/20 w-64 h-64 rounded-full blur-3xl"></div>
-        <div className="absolute -bottom-10 -left-10 bg-emerald-500/20 w-64 h-64 rounded-full blur-3xl"></div>
-      </motion.div>
-    </main>
-
-    <section className="bg-white py-24">
-      <div className="max-w-7xl mx-auto px-12 text-center">
-        <h3 className="text-3xl font-bold text-slate-900 mb-16">Complete System Flow Overview</h3>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-          {[
-            { icon: 'person_add', label: 'Lead Capture', color: 'bg-orange-100 text-orange-600' },
-            { icon: 'hub', label: 'Smart Assignment', color: 'bg-teal-100 text-teal-600' },
-            { icon: 'calendar_today', label: 'Appointment Booking', color: 'bg-blue-100 text-blue-600' },
-            { icon: 'medical_services', label: 'EMR & Consultation', color: 'bg-purple-100 text-purple-600' },
-          ].map((item, i) => (
-            <div key={i} className="p-8 rounded-3xl bg-slate-50 hover:bg-white hover:shadow-xl transition-all border border-transparent hover:border-slate-100 group">
-              <div className={`w-16 h-16 ${item.color} rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform`}>
-                <span className="material-symbols-outlined text-3xl">{item.icon}</span>
+          {/* Floating Card */}
+          <motion.div 
+            animate={{ y: [0, -10, 0] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute -right-8 top-1/4 bg-white p-6 rounded-3xl shadow-2xl border border-teal-50 hidden md:block"
+          >
+            <div className="flex items-center gap-4 mb-3">
+              <div className="w-10 h-10 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center">
+                <span className="material-symbols-outlined">trending_up</span>
               </div>
-              <p className="font-bold text-slate-800">{item.label}</p>
+              <div>
+                <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Revenue</p>
+                <p className="text-lg font-black text-slate-900">+24%</p>
+              </div>
             </div>
+            <div className="h-1.5 w-32 bg-slate-100 rounded-full overflow-hidden">
+              <div className="h-full bg-emerald-500 w-3/4"></div>
+            </div>
+          </motion.div>
+        </div>
+        <div className="absolute -top-20 -right-20 bg-teal-400/20 w-96 h-96 rounded-full blur-[100px]"></div>
+        <div className="absolute -bottom-20 -left-20 bg-emerald-400/20 w-96 h-96 rounded-full blur-[100px]"></div>
+      </motion.div>
+    </section>
+
+    {/* Stats Section */}
+    <section className="bg-[#004d4d] py-20 text-white overflow-hidden relative">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-2 md:grid-cols-4 gap-12 relative z-10">
+        {[
+          { label: 'Active Clinics', value: '1,200+' },
+          { label: 'Patients Managed', value: '2.5M+' },
+          { label: 'Daily Appointments', value: '45k+' },
+          { label: 'Uptime Guarantee', value: '99.9%' },
+        ].map((stat, i) => (
+          <div key={i} className="text-center">
+            <h4 className="text-4xl md:text-5xl font-black mb-2 tracking-tighter">{stat.value}</h4>
+            <p className="text-teal-200 text-sm font-bold uppercase tracking-widest">{stat.label}</p>
+          </div>
+        ))}
+      </div>
+      <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:40px_40px]"></div>
+      </div>
+    </section>
+
+    {/* Features Grid */}
+    <section id="features" className="py-32 bg-white">
+      <div className="max-w-7xl mx-auto px-6 md:px-12">
+        <div className="text-center max-w-3xl mx-auto mb-20">
+          <h3 className="text-4xl md:text-6xl font-black text-slate-900 mb-6 tracking-tight">Everything you need to <span className="text-[#008080]">scale</span></h3>
+          <p className="text-xl text-slate-500 font-medium">Stop juggling spreadsheets. Our integrated platform handles the heavy lifting so you can focus on dentistry.</p>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {[
+            { 
+              title: 'Smart Lead Routing', 
+              desc: 'Automatically assign leads from WhatsApp, Phone, and Web to the nearest clinic based on availability.',
+              icon: 'hub',
+              color: 'bg-teal-50 text-teal-600'
+            },
+            { 
+              title: 'Unified EMR', 
+              desc: 'Access patient history, X-rays, and treatment plans across all your branches in a single secure cloud.',
+              icon: 'folder_shared',
+              color: 'bg-blue-50 text-blue-600'
+            },
+            { 
+              title: 'Automated Recalls', 
+              desc: 'AI-driven WhatsApp reminders for follow-ups, cleaning, and pending treatments to boost retention.',
+              icon: 'auto_awesome',
+              color: 'bg-purple-50 text-purple-600'
+            },
+            { 
+              title: 'Inventory Control', 
+              desc: 'Real-time tracking of consumables across centers with automated low-stock purchase orders.',
+              icon: 'inventory_2',
+              color: 'bg-orange-50 text-orange-600'
+            },
+            { 
+              title: 'Financial Insights', 
+              desc: 'Deep dive into revenue, outstanding payments, and clinic performance with beautiful dashboards.',
+              icon: 'analytics',
+              color: 'bg-emerald-50 text-emerald-600'
+            },
+            { 
+              title: 'Multi-Clinic Queue', 
+              desc: 'Manage patient wait times live across all locations. Optimize staff allocation on the fly.',
+              icon: 'groups',
+              color: 'bg-rose-50 text-rose-600'
+            }
+          ].map((feature, i) => (
+            <motion.div 
+              key={i}
+              whileHover={{ y: -10 }}
+              className="p-10 rounded-[2.5rem] bg-slate-50 border border-slate-100 hover:bg-white hover:shadow-2xl hover:shadow-teal-900/10 transition-all group"
+            >
+              <div className={`w-16 h-16 ${feature.color} rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform`}>
+                <span className="material-symbols-outlined text-3xl">{feature.icon}</span>
+              </div>
+              <h4 className="text-2xl font-black text-slate-900 mb-4">{feature.title}</h4>
+              <p className="text-slate-500 font-medium leading-relaxed">{feature.desc}</p>
+            </motion.div>
           ))}
         </div>
       </div>
     </section>
+
+    {/* Testimonials */}
+    <section id="testimonials" className="py-32 bg-teal-50/50">
+      <div className="max-w-7xl mx-auto px-6 md:px-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+          <div>
+            <h3 className="text-5xl md:text-7xl font-black text-slate-900 mb-8 tracking-tighter">Trusted by the best in <span className="text-[#008080]">dentistry</span>.</h3>
+            <p className="text-xl text-slate-600 font-medium mb-12">"Dental Sanctuary transformed our 5-clinic group from a chaotic mess of WhatsApp groups into a streamlined, high-revenue machine. The ROI was immediate."</p>
+            <div className="flex items-center gap-4">
+              <img src="https://i.pravatar.cc/100?u=doctor" className="w-16 h-16 rounded-full border-4 border-white shadow-xl" alt="Doctor" />
+              <div>
+                <p className="font-black text-slate-900">Dr. Vikram Shah</p>
+                <p className="text-sm font-bold text-teal-600 uppercase tracking-widest">Founder, Smile Dental Group</p>
+              </div>
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-6">
+            <div className="space-y-6">
+              <div className="bg-white p-8 rounded-3xl shadow-xl border border-teal-50">
+                <p className="text-4xl font-black text-[#008080] mb-2">40%</p>
+                <p className="text-sm font-bold text-slate-500 uppercase tracking-widest">Increase in Lead Conversion</p>
+              </div>
+              <div className="bg-[#008080] p-8 rounded-3xl shadow-xl text-white">
+                <p className="text-4xl font-black mb-2">2.5h</p>
+                <p className="text-sm font-bold text-teal-100 uppercase tracking-widest">Saved per staff daily</p>
+              </div>
+            </div>
+            <div className="pt-12 space-y-6">
+              <div className="bg-white p-8 rounded-3xl shadow-xl border border-teal-50">
+                <p className="text-4xl font-black text-[#008080] mb-2">15%</p>
+                <p className="text-sm font-bold text-slate-500 uppercase tracking-widest">Reduction in No-shows</p>
+              </div>
+              <div className="bg-slate-900 p-8 rounded-3xl shadow-xl text-white">
+                <p className="text-4xl font-black mb-2">Zero</p>
+                <p className="text-sm font-bold text-slate-400 uppercase tracking-widest">Paperwork required</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* CTA Section */}
+    <section className="py-32">
+      <div className="max-w-5xl mx-auto px-6">
+        <div className="bg-[#008080] rounded-[4rem] p-12 md:p-24 text-center text-white relative overflow-hidden shadow-[0_48px_96px_-12px_rgba(0,128,128,0.4)]">
+          <div className="relative z-10">
+            <h3 className="text-5xl md:text-7xl font-black mb-8 tracking-tighter">Ready to modernize your clinic?</h3>
+            <p className="text-xl text-teal-100 mb-12 max-w-2xl mx-auto font-medium">Join 1,200+ clinics already scaling with Dental Sanctuary. No credit card required to start.</p>
+            <button 
+              onClick={onLoginClick}
+              className="bg-white text-[#008080] px-16 py-6 rounded-[2.5rem] font-black text-2xl shadow-2xl hover:scale-105 active:scale-95 transition-all"
+            >
+              Start Free Trial
+            </button>
+          </div>
+          {/* Decorative circles */}
+          <div className="absolute -top-24 -left-24 w-64 h-64 bg-teal-400/20 rounded-full blur-3xl"></div>
+          <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-emerald-400/20 rounded-full blur-3xl"></div>
+        </div>
+      </div>
+    </section>
+
+    {/* Footer */}
+    <footer className="bg-slate-900 text-slate-400 py-24 border-t border-slate-800">
+      <div className="max-w-7xl mx-auto px-6 md:px-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-16 mb-20">
+          <div className="col-span-1 md:col-span-1">
+            <div className="flex items-center gap-3 mb-8">
+              <div className="w-10 h-10 bg-[#008080] rounded-xl flex items-center justify-center text-white">
+                <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>dentistry</span>
+              </div>
+              <h1 className="text-2xl font-black text-white tracking-tight">Dental Sanctuary</h1>
+            </div>
+            <p className="text-sm leading-relaxed mb-8">The most advanced automation platform for dental groups and independent practices.</p>
+            <div className="flex gap-4">
+              {['facebook', 'twitter', 'linkedin', 'instagram'].map(social => (
+                <a key={social} href="#" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-[#008080] hover:text-white transition-all">
+                  <span className="material-symbols-outlined text-lg">public</span>
+                </a>
+              ))}
+            </div>
+          </div>
+          
+          <div>
+            <h5 className="text-white font-black uppercase tracking-widest text-xs mb-8">Product</h5>
+            <ul className="space-y-4 text-sm font-bold">
+              <li><a href="#" className="hover:text-white transition-colors">Features</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Integrations</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Pricing</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Changelog</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h5 className="text-white font-black uppercase tracking-widest text-xs mb-8">Resources</h5>
+            <ul className="space-y-4 text-sm font-bold">
+              <li><a href="#" className="hover:text-white transition-colors">Documentation</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Help Center</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">API Reference</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Community</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h5 className="text-white font-black uppercase tracking-widest text-xs mb-8">Company</h5>
+            <ul className="space-y-4 text-sm font-bold">
+              <li><a href="#" className="hover:text-white transition-colors">About Us</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Careers</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Privacy Policy</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">Terms of Service</a></li>
+            </ul>
+          </div>
+        </div>
+        
+        <div className="pt-12 border-t border-slate-800 flex flex-col md:row items-center justify-between gap-6">
+          <p className="text-xs font-bold uppercase tracking-widest">© 2026 Dental Sanctuary Inc. All rights reserved.</p>
+          <div className="flex items-center gap-8 text-xs font-bold uppercase tracking-widest">
+            <a href="#" className="hover:text-white transition-colors">Status</a>
+            <a href="#" className="hover:text-white transition-colors">Security</a>
+            <a href="#" className="hover:text-white transition-colors">Cookies</a>
+          </div>
+        </div>
+      </div>
+    </footer>
   </div>
 );
 
